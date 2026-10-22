@@ -700,4 +700,4 @@ const logger = ({ time, name }) => {
   console.log(`Log after ${time}`, name);
 };
 
-setTimeout(logger, 1000, { time: "1s", name: "Alice" });
+setTimeout(logger, 1000, { time: "1s", name: "DIMA" });
