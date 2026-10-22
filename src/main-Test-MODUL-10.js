@@ -697,18 +697,45 @@ console.log(new Date(15000));
 
 // ВАРІАНТ-1 :
 
-const logger = () => {
-  console.log("Log after Dima");
-};
+// const logger = () => {
+//   console.log("Log after Dima");
+// };
 
-setTimeout(logger, 1000);
+// setTimeout(logger, 1000);
 
 //.............
 
-// ВАРІАНТ-1 :
+// ВАРІАНТ-2 :
 
-// const logger = ({ time, name }) => {
+// const logger = (time, name) => {
 //   console.log(`Log after ${time}`, name);
 // };
 
-// setTimeout(logger, 1000, { time: "1s", name: "DIMA" });
+// setTimeout(logger, 2000, "2s", "DIMA VARIANT-2");
+
+
+//.............
+
+// ВАРІАНТ-3 :
+
+// const logger = (params) => {
+//   console.log(`Log after ${params.time}`, params.name);
+// };
+
+// setTimeout(logger, 3000, { time: "3s", name: "DIMA VARIANT-3" });
+
+
+//.............
+
+// ВАРІАНТ-4 (ментор   (00:47:50)):
+
+const logger = ({ time, name }) => {
+  console.log(`Log after ${time}`, name);
+};
+
+setTimeout(logger, 4000, { time: "4s", name: "DIMA VARIANT-4" });
+
+
+//.............
+
+// (00:50:20)
