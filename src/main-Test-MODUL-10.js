@@ -695,9 +695,20 @@ console.log(new Date(15000));
 // )
 
 
+// ВАРІАНТ-1 :
 
-const logger = ({ time, name }) => {
-  console.log(`Log after ${time}`, name);
+const logger = () => {
+  console.log("Log after Dima");
 };
 
-setTimeout(logger, 1000, { time: "1s", name: "DIMA" });
+setTimeout(logger, 1000);
+
+//.............
+
+// ВАРІАНТ-1 :
+
+// const logger = ({ time, name }) => {
+//   console.log(`Log after ${time}`, name);
+// };
+
+// setTimeout(logger, 1000, { time: "1s", name: "DIMA" });
