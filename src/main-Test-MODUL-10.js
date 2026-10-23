@@ -59,17 +59,17 @@
 // <button type="button" class="btn">Click me</button>
 
 
-// const button = document.querySelector("button");
+const button = document.querySelector("button");
 
-// const onClick = () => {
-//   const timerId = setTimeout(() => {        //  setTimeout() реєструємо таймер.	Повертаємо ЦИФРОВИЙ ІНДЕНТИФІКАТОР (наприклад, 1)
-//     console.log("I love async JS!");
-//   }, 2000);
+const onClick = () => {
+  const timerId = setTimeout(() => {        //  setTimeout() реєструємо таймер.	Повертаємо ЦИФРОВИЙ ІНДЕНТИФІКАТОР (наприклад, 1)
+    console.log("I love async JS!");
+  }, 2000);
 
-//   console.log(timerId);   //  ЦИФРОВИЙ ІНДЕНТИФІКАТОР - ВИВОДИТЬСЯ ОДРАЗУ!
-// };
+  console.log(timerId);   //  ЦИФРОВИЙ ІНДЕНТИФІКАТОР - ВИВОДИТЬСЯ ОДРАЗУ!
+};
 
-// button.addEventListener("click", onClick);
+button.addEventListener("click", onClick);
 
 // //........
 
@@ -729,13 +729,29 @@ console.log(new Date(15000));
 
 // ВАРІАНТ-4 (ментор   (00:47:50)):
 
-const logger = ({ time, name }) => {
-  console.log(`Log after ${time}`, name);
-};
+// const logger = ({ time, name }) => {
+//   console.log(`Log after ${time}`, name);
+// };
 
-setTimeout(logger, 4000, { time: "4s", name: "DIMA VARIANT-4" });
+// setTimeout(logger, 4000, { time: "4s", name: "DIMA VARIANT-4" });
 
 
 //.............
 
-// (00:50:20)
+// Приклад 001 (00:50:20) :
+// (див. рядок 51)
+
+// Під час виклику "setTimeout()" повертае "ІДЕНТИФІКАТОР" просто якесь число. Для отримання цього числа (ідентифікатора) збережемо "setTimeout()" в змінну і виведемо її в консоль. Спочатку в консоль буде виводитися ЦИФРОВИЙ ІНДЕНТИФІКАТОР :
+// console.log(timerId);     //  1, 2, 3, 4... і так далі (кожен новий таймер отримує наступне число). А потім, за 1000мс callback — результат роботи функції, виклик якої заплановано : :
+
+
+const logger = ({ time, name }) => {
+  console.log(`Log after ${time}`, name);
+};
+
+const timeID = setTimeout(logger, 1000, { time: "1s", name: "DIMA" });
+
+console.log(timeID);
+
+
+// (00:51:45) :
