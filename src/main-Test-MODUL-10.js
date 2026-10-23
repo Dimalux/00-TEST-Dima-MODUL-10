@@ -745,13 +745,13 @@ console.log(new Date(15000));
 // console.log(timerId);     //  1, 2, 3, 4... і так далі (кожен новий таймер отримує наступне число). А потім, за 1000мс callback — результат роботи функції, виклик якої заплановано : :
 
 
-const logger = ({ time, name }) => {
-  console.log(`Log after ${time}`, name);
-};
+// const logger = ({ time, name }) => {
+//   console.log(`Log after ${time}`, name);
+// };
 
-const timeID = setTimeout(logger, 1000, { time: "1s", name: "DIMA" });
+// const timeID = setTimeout(logger, 1000, { time: "1s", name: "DIMA" });
 
-console.log(timeID);
+// console.log(timeID);
 
 //.............
 
@@ -759,8 +759,47 @@ console.log(timeID);
 
 // Для ЗУПИНКИ "Timeout", щоб функція "logger" НЕ відпрацювала, використовуємо метод "clearTimeout" і передаємо в нього унікальний числовий ІДЕНТИФІКАТОР, який повернув "setTimeout" в змінну "timeID" :
 
-clearTimeout(timeID);
+// clearTimeout(timeID);
 
 // ПРИМІТКА :  якщо нам, наприклад, потрібно ПРИПИНИТИ 10-ть ІНДЕНТИФІКАТОРів, ми складаємо їх у масив, проходимо по цьому масиву, отримуємо елемент масиву і передаємо його в "clearTimeout".
 
-// (00:54:00) :
+
+//......................
+//......................
+
+//  Можливість передати параметри для колбеку (00:54:00) :
+
+// ВАРІАНТ-1 :
+
+// setTimeout((name) => {
+//     console.log(`Hello ${name}`);       //   буде: Hello undefined
+// }, 2000)
+
+//..........
+
+// ВАРІАНТ-2    параметр зі значеннями за замовчуванням :
+
+// setTimeout( (name = "Dima") => {
+//     console.log(`Hello ${name}`);        //   буде: Hello Dima
+// }, 2000);
+
+//..........
+
+// ВАРІАНТ-3    Додаткові аргументи (arg1, arg2 тощо) не обов'язкові і будуть передані callback функції під час виклику :
+
+// setTimeout( (name) => {
+//     console.log(`Hello ${name}`);        //   буде: Hello Dima_V
+// }, 2000, "Dima_V");
+
+
+//..........
+
+// ВАРІАНТ-4    параметр як об'єкт :
+
+// setTimeout( ({ name }) => {
+//     console.log(`Hello ${name}`);        //   буде: Hello Dimalux
+// }, 2000, {name: "Dimalux"});
+
+
+
+//   (00:56:25) :
