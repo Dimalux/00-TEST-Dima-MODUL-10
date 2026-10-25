@@ -16,3 +16,18 @@
 @import url('./badges.css');
 @import url('./back-link.css');
 @import url('./footer.css');
+
+
+
+/* Стиль для КНОПКИ  "Click me" в файлі "index.html"  */
+.js-button-01 {
+  position: relative;
+  display: block; /* Змінюємо з inline-block на block */
+  margin: 32px auto 0 auto; /* auto зліва і справа центрує кнопку, а 32px зверху залишає ваш відступ */
+  padding: 4px 8px;
+  border: 1px solid;
+  border-radius: 8px;
+  width: 144px;
+  height: 56px;
+}
+
