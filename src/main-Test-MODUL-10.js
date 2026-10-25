@@ -904,7 +904,7 @@ setTimeout(() => {
 // 1)  Елемент який ми будемо  приховувати :
 // <p class="alert success js-alert">Success!</p>
 
-// 2)  Створимо зінну "NOTIFICATION_DELAY" - наша затримка для приховування елемента <p> :
+// 2)  Створимо зінну "NOTIFICATION_DELAY" - наша затримка для приховування елемента <p>, т/т повідомлення "Success!" :
 const NOTIFICATION_DELAY = 3000;
 
 // 3)  Отримуємо елемент <p> :
@@ -912,9 +912,18 @@ const notification = document.querySelector(".js-alert");
 
 // 4)  Створимо ф-ію, яка буде відображати наш елемент додаючи  клас "is-visible" :
 
-// ShowNotification();
+ShowNotification();
 
 function ShowNotification() {
   notification.classList.add("is-visible")    //  додаємо клас "is-visible"
-}
 
+  // приховуємо повідомлення "Success!" через час 3сек "NOTIFICATION_DELAY = 3000":
+setTimeout(() => {
+notification.classList.remove("is-visible");
+}, NOTIFICATION_DELAY)
+
+};
+
+
+
+// (01:26:15)
