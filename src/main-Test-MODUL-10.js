@@ -910,7 +910,11 @@ const NOTIFICATION_DELAY = 3000;
 // 3)  Отримуємо елемент <p> :
 const notification = document.querySelector(".js-alert");
 
-// 4)  Створимо ф-ію, яка буде відображати наш елемент :
+// 4)  Створимо ф-ію, яка буде відображати наш елемент додаючи  клас "is-visible" :
 
+// ShowNotification();
 
+function ShowNotification() {
+  notification.classList.add("is-visible")    //  додаємо клас "is-visible"
+}
 

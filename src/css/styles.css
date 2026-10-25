@@ -31,3 +31,46 @@
   height: 56px;
 }
 
+/* ............. */
+
+ /* УРОК  МОДУДЬ-10 / Урок1  -  ЗАДАЧА-001   (01:21:10) : */
+
+
+ /* 1. Базові стилі та приховування за замовчуванням */
+.alert {
+  position: fixed;       /* Фіксуємо на екрані */
+  bottom: 32px;          /* Відступ від низу екрана */
+  right: 32px;           /* Відступ від правого краю */
+
+  padding: 16px 24px;    /* Внутрішні відступи: 16px зверху/знизу, 24px зліва/справа */
+  border-radius: 6px;    /* Закруглені кути */
+
+  font-family: sans-serif; /* Шрифт без засічок, як на скріншоті */
+  font-size: 16px;
+  color: #ffffff;        /* Білий текст */
+
+  /* Стан за замовчуванням (схований) */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px); /* Трохи зміщуємо вниз для ефекту виїзду */
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+
+  /* Тінь для об'єму (як на скріншоті) */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;         /* Щоб повідомлення було поверх інших елементів */
+}
+
+/* 2. Модифікатор для успішного повідомлення (зелений фон) */
+.alert.success {
+  background-color: #4CAF50; /* Зелений колір */
+}
+
+/* 3. Клас, який додає JavaScript, щоб показати елемент */
+.alert.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0); /* Повертаємо на місце */
+}
+
+
+
