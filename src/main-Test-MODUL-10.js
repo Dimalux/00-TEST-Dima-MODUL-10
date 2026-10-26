@@ -904,26 +904,78 @@ setTimeout(() => {
 // 1)  Елемент який ми будемо  приховувати :
 // <p class="alert success js-alert">Success!</p>
 
-// 2)  Створимо зінну "NOTIFICATION_DELAY" - наша затримка для приховування елемента <p>, т/т повідомлення "Success!" :
-const NOTIFICATION_DELAY = 3000;
+// // 2)  Створимо зінну "NOTIFICATION_DELAY" - наша затримка для приховування елемента <p>, тобто повідомлення "Success!" :
+// const NOTIFICATION_DELAY = 4000;
 
-// 3)  Отримуємо елемент <p> :
+// // 3)  Отримуємо елемент <p> :
+// const notification = document.querySelector(".js-alert");
+
+// // 3.1) Для виконання завдання "Ховаємо при кліці" вішаємо на елемент слухач подій (01:26:15) :
+// notification.addEventListener("click", handleClick);
+
+
+// // 4)  Створимо ф-ію, яка буде відображати наш елемент додаючи  клас "is-visible" :
+
+// ShowNotification();
+
+// function ShowNotification() {
+//   notification.classList.add("is-visible")    //  додаємо клас "is-visible"
+
+//   // приховуємо повідомлення "Success!" через час 4сек "NOTIFICATION_DELAY = 4000":
+// setTimeout(() => {
+// notification.classList.remove("is-visible");
+// }, NOTIFICATION_DELAY)
+
+// };
+
+
+// // 5)  Створимо ф-ію, яка буде приховувати наш елемент при КЛІКУ, видаляючі  клас "is-visible" :
+// function handleClick()  {
+
+// notification.classList.remove("is-visible");
+
+// };
+
+//............
+
+// УВАГА !!!
+// але в нас ДУБЛЮВАННЯ коду "notification.classList.remove("is-visible")" в 2-х місцях :
+// - рядок 926,
+// - рядок 935.
+
+// Щоб не було повторення коду (ДУБЛЮВАННЯ), треба створити функцію, яка буде ВИДАЛЯТИ клас "is-visible" з елемента :
+
+function hide() {
+  notification.classList.remove("is-visible");
+};
+
+//............
+
+// В результаті переписуємо код :
+
+const NOTIFICATION_DELAY = 4000;
+
 const notification = document.querySelector(".js-alert");
-
-// 4)  Створимо ф-ію, яка буде відображати наш елемент додаючи  клас "is-visible" :
+notification.addEventListener("click", handleClick);
 
 ShowNotification();
 
 function ShowNotification() {
   notification.classList.add("is-visible")    //  додаємо клас "is-visible"
 
-  // приховуємо повідомлення "Success!" через час 3сек "NOTIFICATION_DELAY = 3000":
+  // приховуємо повідомлення "Success!" через час 4сек "NOTIFICATION_DELAY = 4000":
 setTimeout(() => {
-notification.classList.remove("is-visible");
+hide()
 }, NOTIFICATION_DELAY)
+};
 
+function handleClick()  {
+hide()
+};
+
+function hide() {
+  notification.classList.remove("is-visible");
 };
 
 
-
-// (01:26:15)
+// (01:29:15) 
