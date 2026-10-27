@@ -994,37 +994,44 @@ console.log(new Date(15000));
 
 //............
 
-// В результаті переписуємо код :
+// // В результаті переписуємо код :
 
-const NOTIFICATION_DELAY = 4000;
+// const NOTIFICATION_DELAY = 4000;
 
-const notification = document.querySelector(".js-alert");
-notification.addEventListener("click", handleClick);
+// const notification = document.querySelector(".js-alert");
+// notification.addEventListener("click", handleClick);
 
-// спочатку оголошуємо "timeID" (ВИНОСИМО "timeID" в зовнішню область видимості) :
-let timeID;
+// // спочатку оголошуємо "timeID" (ВИНОСИМО "timeID" в зовнішню область видимості) :
+// let timeID;
 
-// потім викликаємо функцію, яка буде відображати наш елемент "Success!" (додаючи  клас "is-visible") :
-ShowNotification();
+// // потім викликаємо функцію, яка буде відображати наш елемент "Success!" (додаючи  клас "is-visible") :
+// ShowNotification();
 
-function ShowNotification() {
-  notification.classList.add("is-visible");    //  додаємо клас "is-visible"
+// function ShowNotification() {
+//   notification.classList.add("is-visible");    //  додаємо клас "is-visible"
 
-  // приховуємо повідомлення "Success!" через час 4сек "NOTIFICATION_DELAY = 4000":
-timeID = setTimeout(() => {   //  отримуємо ЦИФРОВИЙ ІНДЕНТИФІКАТОР в змінну "timeID"
-hide();
-console.log("setTimeout відпрацював !!!");
+//   // приховуємо повідомлення "Success!" через час 4сек "NOTIFICATION_DELAY = 4000":
+// timeID = setTimeout(() => {   //  отримуємо ЦИФРОВИЙ ІНДЕНТИФІКАТОР в змінну "timeID"
+// hide();
+// console.log("setTimeout відпрацював !!!");
 
-}, NOTIFICATION_DELAY)
-}
+// }, NOTIFICATION_DELAY)
+// }
 
-function handleClick()  {     // функція, яка буде приховувати наш елемент при КЛІКУ, видаляючі  клас "is-visible" :
-hide();
-clearTimeout(timeID);   //  ЗУПИНЯЄМО "setTimeout" після КЛІКУ на елемент "Success!"
-}
+// function handleClick()  {     // функція, яка буде приховувати наш елемент при КЛІКУ, видаляючі  клас "is-visible" :
+// hide();
+// clearTimeout(timeID);   //  ЗУПИНЯЄМО "setTimeout" після КЛІКУ на елемент "Success!"
+// }
 
 
-function hide() {
-  notification.classList.remove("is-visible");   //  Щоб не було ДУБЛЮВАННЯ коду
-}
+// function hide() {
+//   notification.classList.remove("is-visible");   //  Щоб не було ДУБЛЮВАННЯ коду
+// }
 
+
+
+//............
+
+
+// УРОК-1 Mодуль-10.  Асинхронний JavaScript і проміси.
+//                    ДАТА і ЧАС  (01:33:00) :
