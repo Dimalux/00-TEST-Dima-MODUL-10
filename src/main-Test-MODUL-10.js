@@ -878,15 +878,15 @@ console.log(new Date(15000));
 
 // або щоб було ПОКАЗОВО, використаємо метод setTimeout() для запуску ЗУПИНКИ ІНТЕРВАЛу через , наприклад, 5сек (тобто ІНТЕРВАЛ спрацює 5-ть разів і ЗУПИНИТЬСЯ):
 
-const logger = (name) => {console.log(`HELLO ${name} !`)};
+// const logger = (name) => {console.log(`HELLO ${name} !`)};
 
-const intevalID = setInterval(logger, 1000, "Dima");
+// const intevalID = setInterval(logger, 1000, "Dima");
 
-console.log(intevalID);
+// console.log(intevalID);
 
-setTimeout(() => {
- clearInterval(intevalID);
-}, 5000)
+// setTimeout(() => {
+//  clearInterval(intevalID);
+// }, 5000)
 
 //..................
 
@@ -938,16 +938,59 @@ setTimeout(() => {
 
 //............
 
-// УВАГА !!!
-// але в нас ДУБЛЮВАННЯ коду "notification.classList.remove("is-visible")" в 2-х місцях :
+//  ПРОБЛЕМА-01 !!!
+//  в нас ДУБЛЮВАННЯ коду "notification.classList.remove("is-visible")" в 2-х місцях :
 // - рядок 926,
 // - рядок 935.
 
 // Щоб не було повторення коду (ДУБЛЮВАННЯ), треба створити функцію, яка буде ВИДАЛЯТИ клас "is-visible" з елемента :
 
-function hide() {
-  notification.classList.remove("is-visible");
-};
+// function hide() {
+//   notification.classList.remove("is-visible");
+// };
+
+// //............
+
+// // В результаті переписуємо код :
+
+// const NOTIFICATION_DELAY = 4000;
+
+// function hide() {
+//   notification.classList.remove("is-visible");
+// };
+
+// const notification = document.querySelector(".js-alert");
+// notification.addEventListener("click", handleClick);
+
+// ShowNotification();
+
+// function ShowNotification() {
+//   notification.classList.add("is-visible")    //  додаємо клас "is-visible"
+
+//   // приховуємо повідомлення "Success!" через час 4сек "NOTIFICATION_DELAY = 4000":
+// setTimeout(() => {
+// hide(),
+// console.log("setTimeout відпрацював !!!");
+
+// }, NOTIFICATION_DELAY)
+// };
+
+// function handleClick()  {     // функція, яка буде приховувати наш елемент при КЛІКУ, видаляючі  клас "is-visible" :
+// hide();
+// };
+
+
+
+//............
+
+//  ПРОБЛЕМА-02 !!!    (01:29:15)
+// Після виконання завдання "Ховаємо при кліці" (коли спрацьовує "handleClick()") в нас ВСЕ РІВНО ВІДПРАЦЬОВУЄ "setTimeout" - це можна побачити по факту виводу в консоль повідомлення "setTimeout відпрацював !!!"
+
+// setTimeout() => {
+// hide(),
+// console.log("setTimeout відпрацював !!!");
+// }
+
 
 //............
 
@@ -958,24 +1001,30 @@ const NOTIFICATION_DELAY = 4000;
 const notification = document.querySelector(".js-alert");
 notification.addEventListener("click", handleClick);
 
+// спочатку оголошуємо "timeID" (ВИНОСИМО "timeID" в зовнішню область видимості) :
+let timeID;
+
+// потім викликаємо функцію, яка буде відображати наш елемент "Success!" (додаючи  клас "is-visible") :
 ShowNotification();
 
 function ShowNotification() {
-  notification.classList.add("is-visible")    //  додаємо клас "is-visible"
+  notification.classList.add("is-visible");    //  додаємо клас "is-visible"
 
   // приховуємо повідомлення "Success!" через час 4сек "NOTIFICATION_DELAY = 4000":
-setTimeout(() => {
-hide()
-}, NOTIFICATION_DELAY)
-};
+timeID = setTimeout(() => {   //  отримуємо ЦИФРОВИЙ ІНДЕНТИФІКАТОР в змінну "timeID"
+hide();
+console.log("setTimeout відпрацював !!!");
 
-function handleClick()  {
-hide()
-};
+}, NOTIFICATION_DELAY)
+}
+
+function handleClick()  {     // функція, яка буде приховувати наш елемент при КЛІКУ, видаляючі  клас "is-visible" :
+hide();
+clearTimeout(timeID);   //  ЗУПИНЯЄМО "setTimeout" після КЛІКУ на елемент "Success!"
+}
+
 
 function hide() {
-  notification.classList.remove("is-visible");
-};
+  notification.classList.remove("is-visible");   //  Щоб не було ДУБЛЮВАННЯ коду
+}
 
-
-// (01:29:15) 
