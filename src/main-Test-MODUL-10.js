@@ -1215,8 +1215,24 @@ console.dir(currentDate);       //  Sat Oct 31 2026 16:41:26 GMT+0200 (Вост�
 
 // console.log(date2 - date1);     //  10000000 операцій - тобто перебирання МАСИВУ відбувається досить ШВИДКО !!!
 
+
+
 //............
 
 // (01:51:30)   ЗАДАЧА :  Написати клас Timer, який буде запускати та зупиняти відлік часу.
 
 
+const startBtn = document.querySelector("button[data-action-start]");
+const stopBtn = document.querySelector("button[data-action-stop]");
+const clockface = document.querySelector(".clockface");
+
+class Timer {
+
+  start() {
+    console.log("ok");
+  }
+}
+
+const timer = new Timer();
+
+startBtn.addEventListener("click", timer.start);
