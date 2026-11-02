@@ -66,17 +66,17 @@
 // <button type="button" class="btn">Click me</button>
 
 
-const button = document.querySelector("button");
+// const button = document.querySelector("button");
 
-const onClick = () => {
-  const timerId = setTimeout(() => {        //  setTimeout() реєструємо таймер.	Повертаємо ЦИФРОВИЙ ІНДЕНТИФІКАТОР (наприклад, 1)
-    console.log("I love async JS!");
-  }, 2000);
+// const onClick = () => {
+//   const timerId = setTimeout(() => {        //  setTimeout() реєструємо таймер.	Повертаємо ЦИФРОВИЙ ІНДЕНТИФІКАТОР (наприклад, 1)
+//     console.log("I love async JS!");
+//   }, 2000);
 
-  console.log(timerId);   //  ЦИФРОВИЙ ІНДЕНТИФІКАТОР - ВИВОДИТЬСЯ ОДРАЗУ!
-};
+//   console.log(timerId);   //  ЦИФРОВИЙ ІНДЕНТИФІКАТОР - ВИВОДИТЬСЯ ОДРАЗУ!
+// };
 
-button.addEventListener("click", onClick);
+// button.addEventListener("click", onClick);
 
 // //........
 
@@ -1221,18 +1221,4 @@ console.dir(currentDate);       //  Sat Oct 31 2026 16:41:26 GMT+0200 (Вост�
 
 // (01:51:30)   ЗАДАЧА :  Написати клас Timer, який буде запускати та зупиняти відлік часу.
 
-
-const startBtn = document.querySelector("button[data-action-start]");
-const stopBtn = document.querySelector("button[data-action-stop]");
-const clockface = document.querySelector(".clockface");
-
-class Timer {
-
-  start() {
-    console.log("ok");
-  }
-}
-
-const timer = new Timer();
-
-startBtn.addEventListener("click", timer.start);
+// дивись продовження в файлі "main-Test-MODUL-10-Timer.js"
