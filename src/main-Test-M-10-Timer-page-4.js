@@ -21,7 +21,14 @@ const clockface = document.querySelector(".clockface");
 class Timer {
 
   start() {
-    console.log("ok");
+const startTime = Date.now();
+console.log(startTime);
+
+setInterval(() => {
+  const currentTime = Date.now();
+const deltaTime = currentTime - startTime;
+console.log(deltaTime);
+},1000)
   }
 }
 
