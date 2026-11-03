@@ -21,17 +21,21 @@ const clockface = document.querySelector(".clockface");
 class Timer {
 
   start() {
+
 const startTime = Date.now();
-console.log(startTime);
 
 setInterval(() => {
   const currentTime = Date.now();
-const deltaTime = currentTime - startTime;
+const deltaTime = currentTime - startTime;  //  отримуємо кількість мс, яка пройшла після натискання на кнопку "Start" поточного моменту
 console.log(deltaTime);
 },1000)
-  }
+  };
+
 }
 
 const timer = new Timer();
 
 startBtn.addEventListener("click", timer.start);
+
+
+// (02:01:15)
