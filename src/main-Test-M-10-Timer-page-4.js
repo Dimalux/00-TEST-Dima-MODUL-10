@@ -26,8 +26,9 @@ const startTime = Date.now();
 
 setInterval(() => {
   const currentTime = Date.now();
-const deltaTime = currentTime - startTime;  //  отримуємо кількість мс, яка пройшла після натискання на кнопку "Start" поточного моменту
-console.log(deltaTime);
+const deltaTime = currentTime - startTime;  //  отримуємо кількість мс, яка пройшла після натискання на кнопку "Start" поточного моменту. Округляємо значення в "мс" до "сек" (наприклад 2005мс до 2сек) за допомогою методів "Math.floor()" або "Math.round()" (дивись 1. Модуль 1. Змінні та типи. Основи функцій - Оператори порівняння):
+console.log(Math.floor(deltaTime/1000));
+// console.log(Math.round(deltaTime/1000));
 },1000)
   };
 
