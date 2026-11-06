@@ -50,18 +50,19 @@
 
 
  function getTimeComponents(time) {
-// const secs = (time / 1000) % 60;
+const secs = (time / 1000) % 60;
     // Скільки в нас СЕКУНД ???
   //  return  secs     //  наприклад 62000мс: 62000 / 1000 = 62 % 60 = 2, тобто в цифрі 62000 буде 2 секунди і ще хвилина, але нас цікавить ТІЛЬКИ "2-і секунди" (де оператор (%) повертає остачу від ділення одного числа на інше, наприклад : const x = 8;  const y = 5; console.log(x % y); // 3  (дивись 1. Модуль 1. Змінні та типи. Основи функцій - Змінні та типи даних))
 
 
 // Скільки в нас ХВИЛИН ???
-//     const minutes = Math.floor((time / 1000 / 60) % 60) ;
+    const minutes = Math.floor((time / 1000 / 60) % 60) ;
 // return minutes;
 
 // Скільки в нас ГОДИН ???
     const hours = Math.floor((time / 1000 / 60 / 60) % 24) ;
-return hours;
+    // const timeSum = `${hours} часов, ${minutes} мінут, ${secs} секунд`;
+return `${hours} часов, ${minutes} мінут, ${secs} секунд`;
 }
 
-console.log(getTimeComponents(62000));
+console.log(getTimeComponents(632000));
