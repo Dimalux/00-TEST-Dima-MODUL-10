@@ -61,15 +61,11 @@
 
 // // Скільки в нас ГОДИН ???
 //     const hours = Math.floor((time / 1000 / 60 / 60) % 24) ;
-//     // const timeSum = `${hours} часов, ${minutes} мінут, ${secs} секунд`;
-// return `${hours} часов, ${minutes} мінут, ${secs} секунд`;
+//     // const timeSum = `${hours} часов, ${minutes} хвилин, ${secs} секунд`;
+// return `${hours} часов, ${minutes} хвилин, ${secs} секунд`;
 // }
 
 // console.log(getTimeComponents(632000));
-
-
-
-
 
 
 
@@ -95,7 +91,7 @@ const secs = Math.floor((deltaTime / 1000) % 60);
 const minutes = Math.floor((deltaTime / 1000 / 60) % 60);
 const hours = Math.floor((deltaTime / 1000 / 60 / 60) % 24);
 
-console.log(`${hours} часов, ${minutes} мінут, ${secs} секунд`);
+console.log(`${hours} часов, ${minutes} хвилин, ${secs} секунд`);
 },1000)
  }
 
@@ -118,4 +114,8 @@ startBtn.addEventListener("click", timer.start);
 // }
 
 // console.log(getTimeComponents(632000));
+
+
+
+// (02:14:00)  Тепер траба відобразити наши  "часи, хвилини, секунди" на сторинці
 
