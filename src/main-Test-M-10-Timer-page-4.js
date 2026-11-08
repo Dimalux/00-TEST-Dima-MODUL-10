@@ -67,7 +67,41 @@
 
 // console.log(getTimeComponents(632000));
 
+//......................
 
+// const startBtn = document.querySelector("button[data-action-start]");
+// const stopBtn = document.querySelector("button[data-action-stop]");
+// const clockface = document.querySelector(".clockface");
+
+// class Timer {
+
+//   start() {
+
+// const startTime = Date.now();
+
+// setInterval(() => {
+//   const currentTime = Date.now();
+// const deltaTime = currentTime - startTime;  //  отримуємо кількість мс, яка пройшла після натискання на кнопку "Start" поточного моменту.
+// // Можна відразу округлити значення в "мс" до "сек" (наприклад 2005мс до 2сек) за допомогою методів "Math.floor()" або "Math.round()" (дивись 1. Модуль 1. Змінні та типи. Основи функцій - Оператори порівняння):
+// // console.log(Math.floor(deltaTime/1000));
+// // console.log(Math.round(deltaTime/1000));
+
+// const secs = Math.floor((deltaTime / 1000) % 60);
+// const minutes = Math.floor((deltaTime / 1000 / 60) % 60);
+// const hours = Math.floor((deltaTime / 1000 / 60 / 60) % 24);
+
+// console.log(`${hours} часов, ${minutes} хвилин, ${secs} секунд`);
+// },1000)
+//  }
+//   }
+
+// const timer = new Timer();
+
+// startBtn.addEventListener("click", timer.start);
+
+//......................
+
+// Код МЕНТОРА :
 
 
 const startBtn = document.querySelector("button[data-action-start]");
@@ -81,39 +115,31 @@ class Timer {
 const startTime = Date.now();
 
 setInterval(() => {
-  const currentTime = Date.now();
-const deltaTime = currentTime - startTime;  //  отримуємо кількість мс, яка пройшла після натискання на кнопку "Start" поточного моменту.
-// Можна відразу округлити значення в "мс" до "сек" (наприклад 2005мс до 2сек) за допомогою методів "Math.floor()" або "Math.round()" (дивись 1. Модуль 1. Змінні та типи. Основи функцій - Оператори порівняння):
-// console.log(Math.floor(deltaTime/1000));
-// console.log(Math.round(deltaTime/1000));
+const currentTime = Date.now();
+const deltaTime = currentTime - startTime;
+const time = this.getTimeComponents(deltaTime);
 
-const secs = Math.floor((deltaTime / 1000) % 60);
-const minutes = Math.floor((deltaTime / 1000 / 60) % 60);
-const hours = Math.floor((deltaTime / 1000 / 60 / 60) % 24);
+console.log(time);
 
-console.log(`${hours} часов, ${minutes} хвилин, ${secs} секунд`);
-},1000)
+}, 1000)
  }
 
-  }
+getTimeComponents(time) {
+const secs = Math.floor((time / 1000) % 60);
+const minutes = Math.floor((time / 1000 / 60) % 60);
+const hours = Math.floor((time / 1000 / 60 / 60) % 24);
 
+return `${hours} часов, ${minutes} мінут, ${secs} секунд`;
+}
+}
 
 const timer = new Timer();
 
-startBtn.addEventListener("click", timer.start);
+startBtn.addEventListener("click", timer.start.bind(timer));
 
 
+//......................
 
-
-// function getTimeComponents(time) {
-// const secs = Math.floor((deltaTime / 1000) % 60);
-// const minutes = Math.floor((time / 1000 / 60) % 60) ;
-// const hours = Math.floor((time / 1000 / 60 / 60) % 24) ;
-
-// return `${hours} часов, ${minutes} мінут, ${secs} секунд`;
-// }
-
-// console.log(getTimeComponents(632000));
 
 
 
