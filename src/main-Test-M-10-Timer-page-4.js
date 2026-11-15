@@ -99,7 +99,48 @@
 
 // startBtn.addEventListener("click", timer.start);
 
+
 //......................
+
+// // Код МІЙ :
+
+// const startBtn = document.querySelector("button[data-action-start]");
+// const stopBtn = document.querySelector("button[data-action-stop]");
+// const clockface = document.querySelector(".clockface");
+
+// class Timer {
+
+//   start() {
+
+// const startTime = Date.now();
+
+// setInterval(() => {
+// const currentTime = Date.now();
+// const deltaTime = currentTime - startTime;
+// const time = this.getTimeComponents(deltaTime);
+
+// console.log(time);
+
+// }, 1000)
+//  }
+
+// getTimeComponents(time) {
+// const secs = Math.floor((time / 1000) % 60);
+// const minutes = Math.floor((time / 1000 / 60) % 60);
+// const hours = Math.floor((time / 1000 / 60 / 60) % 24);
+
+// return `${hours} часов, ${minutes} мінут, ${secs} секунд`;
+
+// }
+// }
+
+// const timer = new Timer();
+
+// startBtn.addEventListener("click", timer.start.bind(timer));
+
+
+//......................
+
 
 // Код МЕНТОРА :
 
@@ -133,12 +174,10 @@ const secs = Math.floor((time / 1000) % 60);
 const minutes = Math.floor((time / 1000 / 60) % 60);
 const hours = Math.floor((time / 1000 / 60 / 60) % 24);
 
-// return `${hours} часов, ${minutes} мінут, ${secs} секунд`;
 return { hours, minutes, secs };
 }
 }
 
-// const timer = new Timer();
 const timer = new Timer({
   onTick: update
 });
@@ -149,14 +188,14 @@ startBtn.addEventListener("click", timer.start.bind(timer));
 //......................
 
 
-// (02:14:00)  Тепер траба ВІДОБРАЗИТИ НА СТОРИНЦІ наші "часи, хвилини, секунди". Створимо функцію яка буде записувати якісь дані на основі об'єкта {0 часов, 0 мінут, 12 секунд} (див. рядок був 137) в текст "<p class="clockface"></p>" на сторінці (ми його вжеотримали "const clockface = document.querySelector(".clockface")"). Далі цю функцію передавати під час створення екземпляра класу "timer". Тоді у кожного екземпляра ця функція м/б своя.
+// (02:14:00)  Тепер траба ВІДОБРАЗИТИ НА СТОРИНЦІ наші "часи, хвилини, секунди". Створимо функцію яка буде записувати якісь дані на основі об'єкта {0 часов, 0 мінут, 12 секунд} (див. рядок був 177) в текст "<p class="clockface"></p>" на сторінці (ми його вже отримали "const clockface = document.querySelector(".clockface")"). Далі цю функцію передавати під час створення екземпляра класу "timer". Тоді у кожного екземпляра ця функція може бути своя.
 
-// Створюємо функцію "update" яка буде приймати рядок "0 часов, 0 мінут, 12 секунд" (див. рядок 136):
+// Створюємо функцію "update" яка буде приймати рядок "0 часов, 0 мінут, 12 секунд" (див. рядок 177):
 function update({hours, minutes, secs}) {
 clockface.innerHTML = `${hours}:${minutes}:${secs}`;
 }
 
-// Тепер пердамо цю функцію в клас "Timer" (див. рядок був 141, змінив на 142), як аргумент. Передамо об'єкт, в якого буде властивість, наприклад, "onTick" зі значенням "update" (наша функція):
+// Тепер передамо цю функцію в клас "Timer" (див. рядок був 181), як аргумент. Передамо об'єкт, в якого буде властивість, наприклад, "onTick" зі значенням "update" (наша функція):
 
 
 // (02:19:00)
