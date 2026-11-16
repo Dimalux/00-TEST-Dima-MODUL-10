@@ -170,12 +170,22 @@ this.onTick(time);
  }
 
 getTimeComponents(time) {
-const secs = Math.floor((time / 1000) % 60);
-const minutes = Math.floor((time / 1000 / 60) % 60);
-const hours = Math.floor((time / 1000 / 60 / 60) % 24);
+// const secs = Math.floor((time / 1000) % 60);
+// const minutes = Math.floor((time / 1000 / 60) % 60);
+// const hours = Math.floor((time / 1000 / 60 / 60) % 24);
+
+const secs = this.pad(Math.floor((time / 1000) % 60));
+const minutes = this.pad(Math.floor((time / 1000 / 60) % 60));
+const hours = this.pad(Math.floor((time / 1000 / 60 / 60) % 24));
 
 return { hours, minutes, secs };
 }
+
+pad(value)  {
+  return String(value).padStart(2, "0");
+}
+
+
 }
 
 const timer = new Timer({
@@ -212,7 +222,12 @@ clockface.innerHTML = `${hours}:${minutes}:${secs}`;
 // 00:00:02
 // 00:00:03 ...
 
-// Для того щоб зробити ці два знаки "00" треба під час створення об'єкту (рядок 177) використати метод рядків padStart()
+// Для того щоб зробити ці два знаки "00" треба під час створення об'єкту (рядок 177) використати метод рядків padStart() для :
+
+// рядок 173  -  const secs = Math.floor((time / 1000) % 60);
+// рядок 174  -  const minutes = Math.floor((time / 1000 / 60) % 60);
+// рядок 175  -  const hours = Math.floor((time / 1000 / 60 / 60) % 24);
+
 // (дивись репозиторій "00-TEST-Dima-git"
 
 // lesson-1.js рядок 168, 191, 195;
@@ -222,8 +237,16 @@ clockface.innerHTML = `${hours}:${minutes}:${secs}`;
 // modul-7.js рядок 3600;
 // )
 
+// Спочатку перетворимо число на рядок. Для цього створимо в класі метод pad() :
+
+// pad(value)  {
+//   return String(value).padStart(2, "0")    // тобто ми хочимо, щоб довжина нашого рядка була 2-а символи, а якщо буде менше додається на початку "0"
+// }
+
+// Потім будемо викликати цю функцію для кожної змінної secs, minutes, hours (рядок 177-179).
 
 
+// (02:24:30)
 
 
 
