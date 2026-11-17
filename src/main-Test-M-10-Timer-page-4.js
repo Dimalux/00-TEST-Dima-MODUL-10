@@ -150,13 +150,19 @@ const stopBtn = document.querySelector("button[data-action-stop]");
 const clockface = document.querySelector(".clockface");
 
 class Timer {
-
 constructor({ onTick }) {
   this.onTick = onTick;
+
+  this.isActive = false;
+
 }
 
   start() {
 const startTime = Date.now();
+
+if(this.isActive) {
+return;
+}
 
 setInterval(() => {
 const currentTime = Date.now();
@@ -222,11 +228,11 @@ clockface.innerHTML = `${hours}:${minutes}:${secs}`;
 // 00:00:02
 // 00:00:03 ...
 
-// Для того щоб зробити ці два знаки "00" треба під час створення об'єкту (рядок 177) використати метод рядків padStart() для :
+// Для того щоб зробити ці два знаки "00" треба під час створення об'єкту використати метод рядків padStart() для :
 
-// рядок 173  -  const secs = Math.floor((time / 1000) % 60);
-// рядок 174  -  const minutes = Math.floor((time / 1000 / 60) % 60);
-// рядок 175  -  const hours = Math.floor((time / 1000 / 60 / 60) % 24);
+// рядок 175  -  const secs = Math.floor((time / 1000) % 60);
+// рядок 176  -  const minutes = Math.floor((time / 1000 / 60) % 60);
+// рядок 177  -  const hours = Math.floor((time / 1000 / 60 / 60) % 24);
 
 // (дивись репозиторій "00-TEST-Dima-git"
 
@@ -243,10 +249,12 @@ clockface.innerHTML = `${hours}:${minutes}:${secs}`;
 //   return String(value).padStart(2, "0")    // тобто ми хочимо, щоб довжина нашого рядка була 2-а символи, а якщо буде менше додається на початку "0"
 // }
 
-// Потім будемо викликати цю функцію для кожної змінної secs, minutes, hours (рядок 177-179).
+// Потім будемо викликати цю функцію для кожної змінної secs, minutes, hours (рядок 179-181).
 
 
-// (02:24:30)
+// (02:24:30)  Якщо натиснути на кнопку "Start", а потім, через деякий час, знову натиснути, то таймер буде показувати якісь незрозуміли цифри. Щоб такого не було ТРЕБА створити в конструкторі властивість об'єкта наприклад "isActive" (див. рядок 156), який буде перевіряти "чи запущений зараз таймер, чи ні" - "this.isActive = false" (за замовчуванням таймер НЕ ЗАПУЩЕНИЙ).
+// Тепер перед тим як запускати функцію "start()" (натиснути на кнопку "Start") робимо перевірку :
+// якщо  "this.isActive = true", тобто таймер вже запущений, то нам не треба другий раз запускати таймер і ми повинні припинити роботу нашою функції "start()" (див. рядок 160) - "return".
 
 
 
