@@ -156,7 +156,7 @@ constructor({ onTick }) {
   this.isActive = false;
 
   this.init();
-
+this.intervalId = null;
 }
 
 init() {
@@ -173,7 +173,7 @@ return;
 const startTime = Date.now();
 this.isActive = true;
 
-setInterval(() => {
+this.intervalId = setInterval(() => {
 const currentTime = Date.now();
 const deltaTime = currentTime - startTime;
 const time = this.getTimeComponents(deltaTime);
@@ -182,6 +182,10 @@ console.log(time);
 this.onTick(time);
 
 }, 1000)
+ }
+
+ stop() {
+  clearInterval(this.intervalId);
  }
 
 getTimeComponents(time) {
@@ -208,7 +212,7 @@ const timer = new Timer({
 });
 
 startBtn.addEventListener("click", timer.start.bind(timer));
-
+stopBtn.addEventListener("click", timer.stop.bind(timer));
 
 //......................
 
@@ -271,8 +275,24 @@ clockface.innerHTML = `${hours}:${minutes}:${secs}`;
 // і потім викликати функцію "onTick" з цим об'єктом де всі нулі. Тепер треба викликати цю функцію. Для того щоб ця функція "onTick" з об'єктом де всі нулі "00:00:00" викликалась сама (автоматично) запишимо її в конструктор (див. рядок 158).
 
 
-// (02:30:30) Тепер треба реалізувати роботу кнопки "Stop".
+// (02:30:30) Тепер треба реалізувати роботу кнопки "Stop" (див. рядок 187). Для цього створимо функцію "stop()", яка буде зупиняти інтервал setInterval (див. рядок 176). Для цього нам потрібен ID цього інтервалу (дивись main-Test-MODUL-10.js - рядок 149, 157, рядок 172-186 - Метод clearInterval(id) - СКАСУВАННЯ ІНТЕРВАЛу). Створимо в конструкторі властивість де будемо зберігати цей ID :
 
+// this.intervalId = null;            (див. рядок 159)
+
+// замість   setInterval(() => {        запишем :
+
+// this.intervalId = setInterval(() => {      (див. рядок 176)
+
+// Тепер викликаємо функцію "stop()", але так як ми використовуємо "this" в :
+// stop() {
+//   clearInterval(this.intervalId);
+//  }
+
+// нам потрібно ПРИВ'ЯЗАТИ КОНТЕКСТ "bind(timer)" :
+// stopBtn.addEventListener("click", timer.stop.bind(timer));      (див. рядок 215)
+
+
+// (02:33:33)  Тепер треба ОБНУЛИТИ таймер
 
 
 // (02:17:17) - варіант для ще однієї кнопки ТАЙМЕРА
