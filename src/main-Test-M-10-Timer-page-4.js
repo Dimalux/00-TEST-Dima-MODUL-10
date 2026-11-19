@@ -165,8 +165,7 @@ this.onTick(time);
 }
 
   start() {
-
-if(this.isActive) {
+if(this.isActive) {      //  перевірка 
 return;
 }
 
@@ -187,6 +186,7 @@ this.onTick(time);
  stop() {
   clearInterval(this.intervalId);
   this.init();
+  this.isActive = false;
  }
 
 getTimeComponents(time) {
@@ -301,10 +301,14 @@ clockface.innerHTML = `${hours}:${minutes}:${secs}`;
 // }
 
 
+// (02:34:15)  Але тепер після ЗУПИНКИ і ОБНУЛЕННЯ ТАЙМЕРУ ми НЕ можемо ЗАНОВО запустити таймер, тому що ми не проходимо перевірку :
 
+// if(this.isActive) {    //  (див. рядок 169)
+// return;
 
+// тому що коли ЗУПИНИЛИ ТАЙМЕР ми повинні перевести властивісь "isActive" в "false" :
 
-
+// this.isActive = false;     //  (див. рядок 190)
 
 // (02:17:17) - варіант для ще однієї кнопки ТАЙМЕРА
 
