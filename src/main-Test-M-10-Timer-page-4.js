@@ -140,10 +140,10 @@
 
 
 //......................
+//......................
 
 
 // Код МЕНТОРА :
-
 
 const startBtn = document.querySelector("button[data-action-start]");
 const stopBtn = document.querySelector("button[data-action-stop]");
@@ -189,7 +189,7 @@ this.onTick(time);      //   кожну секунду перемальовує�
   this.isActive = false;
  }
 
-getTimeComponents(time) {
+getTimeComponents(time) {       //  (див. рядок 47) (02:01:15)  метод "getTimeComponents()" підраховує скільки в "deltaTime" секунд, хвилин, годин
 // const secs = Math.floor((time / 1000) % 60);
 // const minutes = Math.floor((time / 1000 / 60) % 60);
 // const hours = Math.floor((time / 1000 / 60 / 60) % 24);
@@ -215,8 +215,6 @@ const timer = new Timer({
 startBtn.addEventListener("click", timer.start.bind(timer));
 stopBtn.addEventListener("click", timer.stop.bind(timer));
 
-//......................
-
 
 // (02:14:00)  Тепер траба ВІДОБРАЗИТИ НА СТОРИНЦІ наші "часи, хвилини, секунди". Створимо функцію яка буде записувати якісь дані на основі об'єкта {0 часов, 0 мінут, 12 секунд} (див. рядок 177) в текст "<p class="clockface"></p>" на сторінці (ми його вже отримали "const clockface = document.querySelector(".clockface")"). Далі цю функцію передавати під час створення екземпляра класу "timer". Тоді у кожного екземпляра ця функція може бути своя.
 
@@ -224,6 +222,9 @@ stopBtn.addEventListener("click", timer.stop.bind(timer));
 function update({hours, minutes, secs}) {
 clockface.innerHTML = `${hours}:${minutes}:${secs}`;
 }
+
+//......................
+//......................
 
 // Тепер передамо цю функцію в клас "Timer" (див. рядок був 181), як аргумент. Якщо ми "щось" (в прикладі передаємо ОБ'ЄКТ "{onTick: update}") (див. рядок 181) передаємо в "Timer" як аргумент (при створенні екземпляра класу), то це "щось" отримуємо в "constructor" (див. рядок 154). Передамо об'єкт, в якого буде властивість, наприклад, "onTick" зі значенням "update" (наша функція). Наша функція "update" хоче об'єкт як аргумент. В нас цей об'єкт зберігається в змінній "time" (див. рядок 164):
 // const time = this.getTimeComponents(deltaTime);    (рядок 164)
