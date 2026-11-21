@@ -336,6 +336,10 @@ const stopBtn = document.querySelector("button[data-action-stop]");
 const clockface = document.querySelector(".clockface");
 
 
+function update(hours, minutes, secs) {     //   функція, що відмальовує таймер на сторінці браузера "00:00:00"
+clockface.innerHTML = `${hours}:${minutes}:${secs}`;
+}
+
 update("00", "00", "00");      //   відображення таймера на сторінці за замовчуванням "00:00:00"
 let isActive = false;         //    за замовчуванням ТАЙМЕР НЕ ЗАПУЩЕНИЙ
 let intervalId = null;       //     оголошення ID-ка для інтервалу "setInterval"
@@ -386,9 +390,6 @@ startBtn.addEventListener("click", start);
 stopBtn.addEventListener("click", stop);
 
 
- function update(hours, minutes, secs) {     //   функція, що відмальовує таймер на сторінці браузера "00:00:00"
-clockface.innerHTML = `${hours}:${minutes}:${secs}`;
-}
 
 
 //......................
