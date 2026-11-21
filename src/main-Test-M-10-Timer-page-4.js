@@ -386,10 +386,9 @@ startBtn.addEventListener("click", start);
 stopBtn.addEventListener("click", stop);
 
 
- function update(hours, minutes, secs) {      //   Коли сторінка в браузері завантажується ми, доки не натиснули на кнопку "Start", ще не бачимо нашого таймера "00:00:00".
+ function update(hours, minutes, secs) {     //   функція, що відмальовує таймер на сторінці браузера "00:00:00"
 clockface.innerHTML = `${hours}:${minutes}:${secs}`;
 }
-
 
 
 //......................
