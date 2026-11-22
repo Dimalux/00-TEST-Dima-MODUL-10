@@ -169,7 +169,7 @@
 // return;
 // }
 
-// const startTime = Date.now();
+// const startTime = Date.now();      //  отримуємо час коли ми натиснулу на кнопку "Start"
 // this.isActive = true;
 
 // this.intervalId = setInterval(() => {
@@ -315,12 +315,9 @@
 // (02:35:11)    ОБЗОР КОДУ
 
 
-// (02:40:15)
-
 
 
 // (02:17:17) - варіант для ще однієї кнопки ТАЙМЕРА
-
 
 
 
@@ -331,54 +328,122 @@
 
 // Код МІЙ -  ПРОСТО ФУНКЦІЇ (без класу):
 
+// const startBtn = document.querySelector("button[data-action-start]");
+// const stopBtn = document.querySelector("button[data-action-stop]");
+// const clockface = document.querySelector(".clockface");
+
+
+// function update(hours, minutes, secs) {     //   функція, що відмальовує таймер на сторінці браузера "00:00:00"
+// clockface.innerHTML = `${hours}:${minutes}:${secs}`;
+// }
+
+// update("00", "00", "00");      //   відображення таймера на сторінці за замовчуванням "00:00:00"
+// let isActive = false;         //    за замовчуванням ТАЙМЕР НЕ ЗАПУЩЕНИЙ
+// let intervalId = null;       //     оголошення ID-ка для інтервалу "setInterval"
+
+// let secs = null;
+// let minutes = null;
+// let hours = null;
+
+//  function start() {
+// if(isActive) {      //  перевірка - "ЧИ ЗАПУЩЕНИЙ зараз ТАЙМЕР, ЧИ НІ"
+// return;
+// }
+
+// const startTime = Date.now();       //  отримуємо час коли ми натиснулу на кнопку "Start"
+// isActive = true;                    //  ТАЙМЕР зараз ЗАПУЩЕНИЙ
+
+
+// intervalId = setInterval(() => {
+// const currentTime = Date.now();
+// const deltaTime = currentTime - startTime;
+// const time = getTimeComponents(deltaTime);
+// console.log(time);
+// }, 1000)
+//  }
+
+// function stop() {
+//   clearInterval(intervalId);
+//   isActive = false;           //  ТАЙМЕР зараз ЗУПИНЕНИЙ (НЕ запущений)
+//   update("00", "00", "00");   //  знову на сторінці відображаєм "00:00:00"
+//  }
+
+// function getTimeComponents(time) {       //  (див. рядок 47) (02:01:15)  метод "getTimeComponents()" підраховує скільки в "deltaTime" секунд, хвилин, годин :
+
+// secs = pad(Math.floor((time / 1000) % 60));
+// minutes = pad(Math.floor((time / 1000 / 60) % 60));
+// hours = pad(Math.floor((time / 1000 / 60 / 60) % 24));
+
+// update (hours, minutes, secs);
+// return `${hours}:${minutes}:${secs}`;
+// }
+
+
+// function pad(value)  {
+//   return String(value).padStart(2, "0");    // тобто ми хочимо, щоб довжина нашого рядка була 2-а символи, а якщо буде менше додається на початку "0"
+// }
+
+// startBtn.addEventListener("click", start);
+// stopBtn.addEventListener("click", stop);
+
+
+
+//......................
+//......................
+
+
+// Код від  МЕНТОРА  -  ПРОСТО ФУНКЦІЇ (без класу)     // (02:40:50) :
+
 const startBtn = document.querySelector("button[data-action-start]");
 const stopBtn = document.querySelector("button[data-action-stop]");
 const clockface = document.querySelector(".clockface");
 
 
-function update(hours, minutes, secs) {     //   функція, що відмальовує таймер на сторінці браузера "00:00:00"
-clockface.innerHTML = `${hours}:${minutes}:${secs}`;
-}
-
-update("00", "00", "00");      //   відображення таймера на сторінці за замовчуванням "00:00:00"
 let isActive = false;         //    за замовчуванням ТАЙМЕР НЕ ЗАПУЩЕНИЙ
 let intervalId = null;       //     оголошення ID-ка для інтервалу "setInterval"
 
-let secs = null;
-let minutes = null;
-let hours = null;
+startBtn.addEventListener("click", start);
+stopBtn.addEventListener("click", stop);
+
+init();
+
+function init() {
+  const time = getTimeComponents(0);
+  onTick(time);
+}
 
  function start() {
 if(isActive) {      //  перевірка - "ЧИ ЗАПУЩЕНИЙ зараз ТАЙМЕР, ЧИ НІ"
 return;
 }
 
-const startTime = Date.now();
-isActive = true;     //  ТАЙМЕР зараз ЗАПУЩЕНИЙ
+const startTime = Date.now();       //  отримуємо час коли ми натиснулу на кнопку "Start"
+isActive = true;                    //  ТАЙМЕР зараз ЗАПУЩЕНИЙ
 
 
 intervalId = setInterval(() => {
 const currentTime = Date.now();
 const deltaTime = currentTime - startTime;
 const time = getTimeComponents(deltaTime);
-console.log(time);
+onTick(time);
 }, 1000)
  }
 
+
 function stop() {
   clearInterval(intervalId);
+  init();
   isActive = false;           //  ТАЙМЕР зараз ЗУПИНЕНИЙ (НЕ запущений)
-  update("00", "00", "00");   //  знову на сторінці відображаєм "00:00:00"
  }
+
 
 function getTimeComponents(time) {       //  (див. рядок 47) (02:01:15)  метод "getTimeComponents()" підраховує скільки в "deltaTime" секунд, хвилин, годин :
 
-secs = pad(Math.floor((time / 1000) % 60));
-minutes = pad(Math.floor((time / 1000 / 60) % 60));
-hours = pad(Math.floor((time / 1000 / 60 / 60) % 24));
+const secs = pad(Math.floor((time / 1000) % 60));
+const minutes = pad(Math.floor((time / 1000 / 60) % 60));
+const hours = pad(Math.floor((time / 1000 / 60 / 60) % 24));
 
-update (hours, minutes, secs);
-return `${hours}:${minutes}:${secs}`;
+return { hours, minutes, secs }
 }
 
 
@@ -386,8 +451,15 @@ function pad(value)  {
   return String(value).padStart(2, "0");    // тобто ми хочимо, щоб довжина нашого рядка була 2-а символи, а якщо буде менше додається на початку "0"
 }
 
-startBtn.addEventListener("click", start);
-stopBtn.addEventListener("click", stop);
+
+function onTick({ hours, minutes, secs }) {
+clockface.innerHTML = `${hours}:${minutes}:${secs}`;
+}
+
+
+
+
+
 
 
 //......................
