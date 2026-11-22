@@ -149,6 +149,7 @@
 // const stopBtn = document.querySelector("button[data-action-stop]");
 // const clockface = document.querySelector(".clockface");
 
+
 // class Timer {
 // constructor({ onTick }) {
 //   this.onTick = onTick;       //   функція "onTick" відповідає за відображення годинника
@@ -312,17 +313,10 @@
 // this.isActive = false;     //  (див. рядок 190)
 
 
+//......................
+
 // (02:35:11)    ОБЗОР КОДУ
 
-
-
-
-// (02:17:17) - варіант для ще однієї кнопки ТАЙМЕРА
-
-
-
-
-//......................
 //......................
 
 
@@ -392,78 +386,183 @@
 //......................
 
 
-// Код від  МЕНТОРА  -  ПРОСТО ФУНКЦІЇ (без класу)     // (02:40:50) :
+// // Код від  МЕНТОРА  -  ПРОСТО ФУНКЦІЇ (без класу)     // (02:40:50) :
+
+// const startBtn = document.querySelector("button[data-action-start]");
+// const stopBtn = document.querySelector("button[data-action-stop]");
+// const clockface = document.querySelector(".clockface");
+
+
+// let isActive = false;         //    за замовчуванням ТАЙМЕР НЕ ЗАПУЩЕНИЙ
+// let intervalId = null;       //     оголошення ID-ка для інтервалу "setInterval"
+
+// startBtn.addEventListener("click", start);
+// stopBtn.addEventListener("click", stop);
+
+// init();
+
+// function init() {
+//   const time = getTimeComponents(0);
+//   onTick(time);
+// }
+
+//  function start() {
+// if(isActive) {      //  перевірка - "ЧИ ЗАПУЩЕНИЙ зараз ТАЙМЕР, ЧИ НІ"
+// return;
+// }
+
+// const startTime = Date.now();       //  отримуємо час коли ми натиснулу на кнопку "Start"
+// isActive = true;                    //  ТАЙМЕР зараз ЗАПУЩЕНИЙ
+
+
+// intervalId = setInterval(() => {
+// const currentTime = Date.now();
+// const deltaTime = currentTime - startTime;
+// const time = getTimeComponents(deltaTime);
+// onTick(time);
+// }, 1000)
+//  }
+
+
+// function stop() {
+//   clearInterval(intervalId);
+//   init();
+//   isActive = false;           //  ТАЙМЕР зараз ЗУПИНЕНИЙ (НЕ запущений)
+//  }
+
+
+// function getTimeComponents(time) {       //  (див. рядок 47) (02:01:15)  метод "getTimeComponents()" підраховує скільки в "deltaTime" секунд, хвилин, годин :
+
+// const secs = pad(Math.floor((time / 1000) % 60));
+// const minutes = pad(Math.floor((time / 1000 / 60) % 60));
+// const hours = pad(Math.floor((time / 1000 / 60 / 60) % 24));
+
+// return { hours, minutes, secs }
+// }
+
+
+// function pad(value)  {
+//   return String(value).padStart(2, "0");    // тобто ми хочимо, щоб довжина нашого рядка була 2-а символи, а якщо буде менше додається на початку "0"
+// }
+
+
+// function onTick({ hours, minutes, secs }) {
+// clockface.innerHTML = `${hours}:${minutes}:${secs}`;
+// }
+
+
+//......................
+//......................
+
+
+// (02:17:17) - варіант для ДРУГОГО ТАЙМЕРА
+
+
+// //......................
+// //......................
+
+
+// Код МЕНТОРА :
 
 const startBtn = document.querySelector("button[data-action-start]");
 const stopBtn = document.querySelector("button[data-action-stop]");
+const startBtn2 = document.querySelector("button[data-action-start-2]");     // код для ДРУГОГО ТАЙМЕРА :
+const stopBtn2 = document.querySelector("button[data-action-stop-2]");       // код для ДРУГОГО ТАЙМЕРА :
+
+
 const clockface = document.querySelector(".clockface");
+const clockface2 = document.querySelector(".clockface2");          // код для ДРУГОГО ТАЙМЕРА :
 
+class Timer {
+constructor({ onTick }) {
+  this.onTick = onTick;       //   функція "onTick" відповідає за відображення годинника
 
-let isActive = false;         //    за замовчуванням ТАЙМЕР НЕ ЗАПУЩЕНИЙ
-let intervalId = null;       //     оголошення ID-ка для інтервалу "setInterval"
+  this.isActive = false;      //    за замовчуванням ТАЙМЕР НЕ ЗАПУЩЕНИЙ
 
-startBtn.addEventListener("click", start);
-stopBtn.addEventListener("click", stop);
-
-init();
-
-function init() {
-  const time = getTimeComponents(0);
-  onTick(time);
+this.init();
+this.intervalId = null;
 }
 
- function start() {
-if(isActive) {      //  перевірка - "ЧИ ЗАПУЩЕНИЙ зараз ТАЙМЕР, ЧИ НІ"
+init() {
+const time = this.getTimeComponents(0);
+this.onTick(time);       //   функція "onTick" відповідає за відображення годинника
+}
+
+  start() {
+if(this.isActive) {      //  перевірка - "ЧИ ЗАПУЩЕНИЙ зараз ТАЙМЕР, ЧИ НІ"
 return;
 }
 
-const startTime = Date.now();       //  отримуємо час коли ми натиснулу на кнопку "Start"
-isActive = true;                    //  ТАЙМЕР зараз ЗАПУЩЕНИЙ
+const startTime = Date.now();      //  отримуємо час коли ми натиснулу на кнопку "Start"
+this.isActive = true;
 
-
-intervalId = setInterval(() => {
+this.intervalId = setInterval(() => {
 const currentTime = Date.now();
 const deltaTime = currentTime - startTime;
-const time = getTimeComponents(deltaTime);
-onTick(time);
+const time = this.getTimeComponents(deltaTime);
+console.log(time);
+
+this.onTick(time);      //   кожну секунду перемальовуємо наш таймер
+
 }, 1000)
  }
 
-
-function stop() {
-  clearInterval(intervalId);
-  init();
-  isActive = false;           //  ТАЙМЕР зараз ЗУПИНЕНИЙ (НЕ запущений)
+ stop() {
+  clearInterval(this.intervalId);
+  this.init();
+  this.isActive = false;
  }
 
+getTimeComponents(time) {       //  (див. рядок 47) (02:01:15)  метод "getTimeComponents()" підраховує скільки в "deltaTime" секунд, хвилин, годин :
+// const secs = Math.floor((time / 1000) % 60);
+// const minutes = Math.floor((time / 1000 / 60) % 60);
+// const hours = Math.floor((time / 1000 / 60 / 60) % 24);
 
-function getTimeComponents(time) {       //  (див. рядок 47) (02:01:15)  метод "getTimeComponents()" підраховує скільки в "deltaTime" секунд, хвилин, годин :
+const secs = this.pad(Math.floor((time / 1000) % 60));
+const minutes = this.pad(Math.floor((time / 1000 / 60) % 60));
+const hours = this.pad(Math.floor((time / 1000 / 60 / 60) % 24));
 
-const secs = pad(Math.floor((time / 1000) % 60));
-const minutes = pad(Math.floor((time / 1000 / 60) % 60));
-const hours = pad(Math.floor((time / 1000 / 60 / 60) % 24));
+return { hours, minutes, secs };
+}
 
-return { hours, minutes, secs }
+pad(value)  {
+  return String(value).padStart(2, "0");
 }
 
 
-function pad(value)  {
-  return String(value).padStart(2, "0");    // тобто ми хочимо, щоб довжина нашого рядка була 2-а символи, а якщо буде менше додається на початку "0"
 }
 
+const timer = new Timer({
+  onTick: update
+});
 
-function onTick({ hours, minutes, secs }) {
+startBtn.addEventListener("click", timer.start.bind(timer));
+stopBtn.addEventListener("click", timer.stop.bind(timer));
+
+
+// (02:14:00)  Тепер траба ВІДОБРАЗИТИ НА СТОРИНЦІ наші "часи, хвилини, секунди". Створимо функцію яка буде записувати якісь дані на основі об'єкта {0 часов, 0 мінут, 12 секунд} (див. рядок 177) в текст "<p class="clockface"></p>" на сторінці (ми його вже отримали "const clockface = document.querySelector(".clockface")"). Далі цю функцію передавати під час створення екземпляра класу "timer". Тоді у кожного екземпляра ця функція може бути своя.
+
+// Створюємо функцію "update" яка буде приймати рядок "0 часов, 0 мінут, 12 секунд" (див. рядок 177):
+function update({hours, minutes, secs}) {
 clockface.innerHTML = `${hours}:${minutes}:${secs}`;
 }
 
 
+// код для ДРУГОГО ТАЙМЕРА :
+
+function update2({hours, minutes, secs}) {
+clockface2.innerHTML = `${hours}:${minutes}:${secs}`;
+}
+
+const timer2 = new Timer({
+  onTick: update2
+});
+
+startBtn2.addEventListener("click", timer2.start.bind(timer2));
+stopBtn2.addEventListener("click", timer2.stop.bind(timer2));
 
 
 
-
-
-//......................
-//......................
-
-
+// //......................
+// //......................
 
