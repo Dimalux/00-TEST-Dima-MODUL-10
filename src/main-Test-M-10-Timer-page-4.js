@@ -514,9 +514,6 @@ this.onTick(time);      //   кожну секунду перемальовує�
  }
 
 getTimeComponents(time) {       //  (див. рядок 47) (02:01:15)  метод "getTimeComponents()" підраховує скільки в "deltaTime" секунд, хвилин, годин :
-// const secs = Math.floor((time / 1000) % 60);
-// const minutes = Math.floor((time / 1000 / 60) % 60);
-// const hours = Math.floor((time / 1000 / 60 / 60) % 24);
 
 const secs = this.pad(Math.floor((time / 1000) % 60));
 const minutes = this.pad(Math.floor((time / 1000 / 60) % 60));
