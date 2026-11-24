@@ -261,7 +261,7 @@
 // ПРИКЛАДИ для розуміння :
 
 // Приклад-1 :
-console.log(new Date(0));  // "Thu Jan 01 1970 03:00:00 GMT+0300 (Eastern European Standard Time)"
+// console.log(new Date(0));  // "Thu Jan 01 1970 03:00:00 GMT+0300 (Eastern European Standard Time)"
 // Де :
 // -  "new Date(0)"  -  це Unix час (0), тобто це 0 мілісекунд з 1 січня 1970 00:00:00 UTC.
 // -  00:00:00 UTC	-  Базовий Unix час (1 січня 1970). Відображення залежить від поясу.
@@ -269,7 +269,7 @@ console.log(new Date(0));  // "Thu Jan 01 1970 03:00:00 GMT+0300 (Eastern Europe
 // Тому я бачу 03:00:00, а не 00:00:00 (Львів -	Europe/Kyiv	(Часовий пояс) - UTC+3 (Літо)  - 	UTC+2 (Зима)).
 
 // Приклад-2 :
-console.log(new Date(15000));
+// console.log(new Date(15000));
 // "Thu Jan 01 1970 03:00:15 GMT+0300 (Eastern European Standard Time)"
 
 // 15000 мілісекунд = 15 секунд;
@@ -1131,8 +1131,8 @@ console.log(new Date(15000));
 // getSeconds()      - Повертає секунди;
 // getMilliseconds() - Повертає мілісекунди.
 
-const currentDate = new Date();
-console.dir(currentDate);       //  Sat Oct 31 2026 16:41:26 GMT+0200 (Восточная Европа, стандартное время)
+// const currentDate = new Date();
+// console.dir(currentDate);       //  Sat Oct 31 2026 16:41:26 GMT+0200 (Восточная Европа, стандартное время)
 
 
 // СЕТТЕРИ (методи для запису) :
