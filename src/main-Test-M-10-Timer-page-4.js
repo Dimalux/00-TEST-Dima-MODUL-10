@@ -14,34 +14,33 @@
 // (01:51:30)   ЗАДАЧА :  Написати клас Timer, який буде запускати та зупиняти відлік часу.
 
 
-// const startBtn = document.querySelector("button[data-action-start]");
-// const stopBtn = document.querySelector("button[data-action-stop]");
-// const clockface = document.querySelector(".clockface");
+const startBtn = document.querySelector("button[data-action-start]");
+const stopBtn = document.querySelector("button[data-action-stop]");
+const clockface = document.querySelector(".clockface");
 
-// class Timer {
+class Timer {
 
-//   start() {
+  start() {
 
-// const startTime = Date.now();
+const startTime = Date.now();
 
-// setInterval(() => {
-//   const currentTime = Date.now();
-// const deltaTime = currentTime - startTime;  //  отримуємо кількість мс, яка пройшла після натискання на кнопку "Start" поточного моменту.
-// // Можна відразу округлити значення в "мс" до "сек" (наприклад 2005мс до 2сек) за допомогою методів "Math.floor()" або "Math.round()" (дивись 1. Модуль 1. Змінні та типи. Основи функцій - Оператори порівняння):
-// // console.log(Math.floor(deltaTime/1000));
-// // console.log(Math.round(deltaTime/1000));
+setInterval(() => {
+  const currentTime = Date.now();
+const deltaTime = currentTime - startTime;  //  отримуємо кількість мс, яка пройшла після натискання на кнопку "Start" поточного моменту.
+// Можна відразу округлити значення в "мс" до "сек" (наприклад 2005мс або 2014мс до 2сек) за допомогою методів "Math.floor()" або "Math.round()" (дивись 1. Модуль 1. Змінні та типи. Основи функцій - Оператори порівняння):
 
-// },1000)
-//   };
+console.log(deltaTime);
+console.log(Math.floor(deltaTime/1000));
+console.log(Math.round(deltaTime/1000));
 
+},1000)
+  };
 
+}
 
+const timer = new Timer();
 
-// }
-
-// const timer = new Timer();
-
-// startBtn.addEventListener("click", timer.start);
+startBtn.addEventListener("click", timer.start);
 
 
 // (02:01:15)  Тепер треба зрозуміти скільки в "deltaTime" секунд, хвилин, годин.
@@ -462,101 +461,101 @@
 // //......................
 
 
-// Код МЕНТОРА :
+// // Код МЕНТОРА :
 
-const startBtn = document.querySelector("button[data-action-start]");
-const stopBtn = document.querySelector("button[data-action-stop]");
-const startBtn2 = document.querySelector("button[data-action-start-2]");     // код для ДРУГОГО ТАЙМЕРА :
-const stopBtn2 = document.querySelector("button[data-action-stop-2]");       // код для ДРУГОГО ТАЙМЕРА :
-
-
-const clockface = document.querySelector(".clockface");
-const clockface2 = document.querySelector(".clockface2");          // код для ДРУГОГО ТАЙМЕРА :
-
-class Timer {
-constructor({ onTick }) {
-  this.onTick = onTick;       //   функція "onTick" відповідає за відображення годинника
-
-  this.isActive = false;      //    за замовчуванням ТАЙМЕР НЕ ЗАПУЩЕНИЙ
-
-this.init();
-this.intervalId = null;
-}
-
-init() {
-const time = this.getTimeComponents(0);
-this.onTick(time);       //   функція "onTick" відповідає за відображення годинника
-}
-
-  start() {
-if(this.isActive) {      //  перевірка - "ЧИ ЗАПУЩЕНИЙ зараз ТАЙМЕР, ЧИ НІ"
-return;
-}
-
-const startTime = Date.now();      //  отримуємо час коли ми натиснулу на кнопку "Start"
-this.isActive = true;
-
-this.intervalId = setInterval(() => {
-const currentTime = Date.now();
-const deltaTime = currentTime - startTime;
-const time = this.getTimeComponents(deltaTime);
-console.log(time);
-
-this.onTick(time);      //   кожну секунду перемальовуємо наш таймер
-
-}, 1000)
- }
-
- stop() {
-  clearInterval(this.intervalId);
-  this.init();
-  this.isActive = false;
- }
-
-getTimeComponents(time) {       //  (див. рядок 47) (02:01:15)  метод "getTimeComponents()" підраховує скільки в "deltaTime" секунд, хвилин, годин :
-
-const secs = this.pad(Math.floor((time / 1000) % 60));
-const minutes = this.pad(Math.floor((time / 1000 / 60) % 60));
-const hours = this.pad(Math.floor((time / 1000 / 60 / 60) % 24));
-
-return { hours, minutes, secs };
-}
-
-pad(value)  {
-  return String(value).padStart(2, "0");
-}
+// const startBtn = document.querySelector("button[data-action-start]");
+// const stopBtn = document.querySelector("button[data-action-stop]");
+// const startBtn2 = document.querySelector("button[data-action-start-2]");     // код для ДРУГОГО ТАЙМЕРА :
+// const stopBtn2 = document.querySelector("button[data-action-stop-2]");       // код для ДРУГОГО ТАЙМЕРА :
 
 
-}
+// const clockface = document.querySelector(".clockface");
+// const clockface2 = document.querySelector(".clockface2");          // код для ДРУГОГО ТАЙМЕРА :
 
-const timer = new Timer({
-  onTick: update
-});
+// class Timer {
+// constructor({ onTick }) {
+//   this.onTick = onTick;       //   функція "onTick" відповідає за відображення годинника
 
-startBtn.addEventListener("click", timer.start.bind(timer));
-stopBtn.addEventListener("click", timer.stop.bind(timer));
+//   this.isActive = false;      //    за замовчуванням ТАЙМЕР НЕ ЗАПУЩЕНИЙ
+
+// this.init();
+// this.intervalId = null;
+// }
+
+// init() {
+// const time = this.getTimeComponents(0);
+// this.onTick(time);       //   функція "onTick" відповідає за відображення годинника
+// }
+
+//   start() {
+// if(this.isActive) {      //  перевірка - "ЧИ ЗАПУЩЕНИЙ зараз ТАЙМЕР, ЧИ НІ"
+// return;
+// }
+
+// const startTime = Date.now();      //  отримуємо час коли ми натиснулу на кнопку "Start"
+// this.isActive = true;
+
+// this.intervalId = setInterval(() => {
+// const currentTime = Date.now();
+// const deltaTime = currentTime - startTime;
+// const time = this.getTimeComponents(deltaTime);
+// console.log(time);
+
+// this.onTick(time);      //   кожну секунду перемальовуємо наш таймер
+
+// }, 1000)
+//  }
+
+//  stop() {
+//   clearInterval(this.intervalId);
+//   this.init();
+//   this.isActive = false;
+//  }
+
+// getTimeComponents(time) {       //  (див. рядок 47) (02:01:15)  метод "getTimeComponents()" підраховує скільки в "deltaTime" секунд, хвилин, годин :
+
+// const secs = this.pad(Math.floor((time / 1000) % 60));
+// const minutes = this.pad(Math.floor((time / 1000 / 60) % 60));
+// const hours = this.pad(Math.floor((time / 1000 / 60 / 60) % 24));
+
+// return { hours, minutes, secs };
+// }
+
+// pad(value)  {
+//   return String(value).padStart(2, "0");
+// }
 
 
-// (02:14:00)  Тепер траба ВІДОБРАЗИТИ НА СТОРИНЦІ наші "часи, хвилини, секунди". Створимо функцію яка буде записувати якісь дані на основі об'єкта {0 часов, 0 мінут, 12 секунд} (див. рядок 177) в текст "<p class="clockface"></p>" на сторінці (ми його вже отримали "const clockface = document.querySelector(".clockface")"). Далі цю функцію передавати під час створення екземпляра класу "timer". Тоді у кожного екземпляра ця функція може бути своя.
+// }
 
-// Створюємо функцію "update" яка буде приймати рядок "0 часов, 0 мінут, 12 секунд" (див. рядок 177):
-function update({hours, minutes, secs}) {
-clockface.innerHTML = `${hours}:${minutes}:${secs}`;
-}
+// const timer = new Timer({
+//   onTick: update
+// });
+
+// startBtn.addEventListener("click", timer.start.bind(timer));
+// stopBtn.addEventListener("click", timer.stop.bind(timer));
 
 
-// код для ДРУГОГО ТАЙМЕРА :
+// // (02:14:00)  Тепер траба ВІДОБРАЗИТИ НА СТОРИНЦІ наші "часи, хвилини, секунди". Створимо функцію яка буде записувати якісь дані на основі об'єкта {0 часов, 0 мінут, 12 секунд} (див. рядок 177) в текст "<p class="clockface"></p>" на сторінці (ми його вже отримали "const clockface = document.querySelector(".clockface")"). Далі цю функцію передавати під час створення екземпляра класу "timer". Тоді у кожного екземпляра ця функція може бути своя.
 
-function update2({hours, minutes, secs}) {
-clockface2.innerHTML = `${hours}:${minutes}:${secs}`;
-}
+// // Створюємо функцію "update" яка буде приймати рядок "0 часов, 0 мінут, 12 секунд" (див. рядок 177):
+// function update({hours, minutes, secs}) {
+// clockface.innerHTML = `${hours}:${minutes}:${secs}`;
+// }
 
-const timer2 = new Timer({
-  onTick: update2
-});
 
-startBtn2.addEventListener("click", timer2.start.bind(timer2));
-stopBtn2.addEventListener("click", timer2.stop.bind(timer2));
+// // код для ДРУГОГО ТАЙМЕРА :
+
+// function update2({hours, minutes, secs}) {
+// clockface2.innerHTML = `${hours}:${minutes}:${secs}`;
+// }
+
+// const timer2 = new Timer({
+//   onTick: update2
+// });
+
+// startBtn2.addEventListener("click", timer2.start.bind(timer2));
+// stopBtn2.addEventListener("click", timer2.stop.bind(timer2));
 
 
 
