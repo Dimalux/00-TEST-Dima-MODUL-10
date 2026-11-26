@@ -14,33 +14,33 @@
 // (01:51:30)   ЗАДАЧА :  Написати клас Timer, який буде запускати та зупиняти відлік часу.
 
 
-const startBtn = document.querySelector("button[data-action-start]");
-const stopBtn = document.querySelector("button[data-action-stop]");
-const clockface = document.querySelector(".clockface");
+// const startBtn = document.querySelector("button[data-action-start]");
+// const stopBtn = document.querySelector("button[data-action-stop]");
+// const clockface = document.querySelector(".clockface");
 
-class Timer {
+// class Timer {
 
-  start() {
+//   start() {
 
-const startTime = Date.now();
+// const startTime = Date.now();
 
-setInterval(() => {
-  const currentTime = Date.now();
-const deltaTime = currentTime - startTime;  //  отримуємо кількість мс, яка пройшла після натискання на кнопку "Start" поточного моменту.
-// Можна відразу округлити значення в "мс" до "сек" (наприклад 2005мс або 2014мс до 2сек) за допомогою методів "Math.floor()" або "Math.round()" (дивись 1. Модуль 1. Змінні та типи. Основи функцій - Оператори порівняння):
+// setInterval(() => {
+//   const currentTime = Date.now();
+// const deltaTime = currentTime - startTime;  //  отримуємо кількість мс, яка пройшла після натискання на кнопку "Start" поточного моменту.
+// // Можна відразу округлити значення в "мс" до "сек" (наприклад 2005мс або 2014мс до 2сек) за допомогою методів "Math.floor()" або "Math.round()" (дивись 1. Модуль 1. Змінні та типи. Основи функцій - Оператори порівняння):
 
-console.log(deltaTime);
-console.log(Math.floor(deltaTime/1000));
-console.log(Math.round(deltaTime/1000));
+// console.log(deltaTime);
+// console.log(Math.floor(deltaTime/1000));
+// console.log(Math.round(deltaTime/1000));
 
-},1000)
-  };
+// },1000)
+//   };
 
-}
+// }
 
-const timer = new Timer();
+// const timer = new Timer();
 
-startBtn.addEventListener("click", timer.start);
+// startBtn.addEventListener("click", timer.start);
 
 
 // (02:01:15)  Тепер треба зрозуміти скільки в "deltaTime" секунд, хвилин, годин.
